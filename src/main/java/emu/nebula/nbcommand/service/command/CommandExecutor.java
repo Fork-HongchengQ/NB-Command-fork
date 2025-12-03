@@ -121,18 +121,18 @@ public class CommandExecutor {
             HttpResponse<String> response = sendCommandToServer(commandText);
 
             if (response.statusCode() == 200) {
-                historyConsumer.accept("命令执行成功: " + commandText + "\n服务端返回:\n" + response.body());
+                historyConsumer.accept("command executed success: " + commandText + "\nserver back:\n" + response.body());
                 logger.info("命令执行成功: {}; 服务端返回: {}", commandText, response.body());
             } else {
-                historyConsumer.accept("命令执行失败: " + response.statusCode() + " - " + response.body());
+                historyConsumer.accept("command execution failed: " + response.statusCode() + " - " + response.body());
                 logger.error("命令执行失败: {} - {}", response.statusCode(), response.body());
             }
         } catch (Exception e) {
-            historyConsumer.accept("命令发送异常: " + e.getMessage());
+            historyConsumer.accept("command sends exceptions: " + e.getMessage());
             logger.error("发送命令时发生异常", e);
 
             if (e.getMessage().equals("java.net.ConnectException"))
-                historyConsumer.accept("请检查远程服务器是否在线");
+                historyConsumer.accept("Please check if the remote server is online");
         }
     }
 }

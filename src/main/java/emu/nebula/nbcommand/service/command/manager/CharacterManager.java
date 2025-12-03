@@ -10,8 +10,7 @@ public class CharacterManager extends BaseCommandManager {
      */
     public static Command createCharacterAllCommand() {
         Syntax syntax = new Syntax()
-                .add("character")
-                .add("all")
+                .add("character all")
                 .add("lv(level)", i18n.getString("param.level"), Syntax.FieldMode.SPECIAL_PREFIX, "lv")
                 .add("a(ascension)", i18n.getString("param.ascension"), Syntax.FieldMode.SPECIAL_PREFIX, "a")
                 .add("s(skill level)", i18n.getString("param.skill_level"), Syntax.FieldMode.SPECIAL_PREFIX, "s")
@@ -37,13 +36,5 @@ public class CharacterManager extends BaseCommandManager {
         return createCommand("character_single", syntax);
     }
 
-    /**
-     * disc命令 - 未知功能
-     */
-    public static Command createDiscCommand() {
-        Syntax syntax = new Syntax()
-                .add("disc");
 
-        return createCommand("disc", syntax);
-    }
 }

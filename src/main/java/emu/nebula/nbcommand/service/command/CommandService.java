@@ -1,7 +1,6 @@
 package emu.nebula.nbcommand.service.command;
 
 import emu.nebula.nbcommand.model.Command;
-import emu.nebula.nbcommand.model.command.Syntax;
 import emu.nebula.nbcommand.service.I18nManager;
 import emu.nebula.nbcommand.service.command.manager.*;
 import emu.nebula.nbcommand.service.command.manager.CharacterManager;
@@ -66,8 +65,13 @@ public class CommandService {
         // 角色管理类别
         structure.put("category.character_management", Arrays.asList(
                 CharacterManager::createCharacterAllCommand,
-                CharacterManager::createCharacterSingleCommand,
-                CharacterManager::createDiscCommand
+                CharacterManager::createCharacterSingleCommand
+        ));
+
+        // 秘纹管理类别
+        structure.put("category.disc_management", Arrays.asList(
+                DiscManager::createDiscAllCommand,
+                DiscManager::createDiscCommand
         ));
         
         // 服务器控制类别
