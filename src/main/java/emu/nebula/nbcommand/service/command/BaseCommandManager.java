@@ -16,7 +16,7 @@ public class BaseCommandManager {
         return new Command(
                 i18n.getString("command." + commandKey + ".name"),
                 i18n.getString("command." + commandKey + ".description"),
-                syntax.add("@(uid)", "uid", Syntax.FieldMode.SPECIAL_PREFIX, "@"),
+                syntax,
                 i18n.getString("command." + commandKey + ".full_description")
         );
     }

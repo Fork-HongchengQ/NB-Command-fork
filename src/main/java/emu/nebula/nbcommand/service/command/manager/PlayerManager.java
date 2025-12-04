@@ -13,7 +13,7 @@ public class PlayerManager extends BaseCommandManager {
                 .add("account")
                 .add("{create | delete}", i18n.getString("param.action"), Syntax.FieldMode.SIMPLE_MULTI_SELECT)
                 .add("[email]", i18n.getString("param.email"))
-//                .add("(uid)", i18n.getString("param.uid"), Syntax.FieldMode.SPECIAL_PREFIX, "")
+                .add("(uid)", i18n.getString("param.uid"), Syntax.FieldMode.SPECIAL_PREFIX, "")
                 ;
 
         return createCommand("account", syntax);

@@ -116,8 +116,12 @@ public class CommandExecutor {
     /**
      * 执行命令
      */
-    public void executeCommand(String commandText, Consumer<String> historyConsumer) {
+    public void executeCommand(String uid, String commandText, Consumer<String> historyConsumer) {
         try {
+            if (uid != null && !uid.isEmpty()) {
+                commandText += " @ " + uid;
+            }
+
             HttpResponse<String> response = sendCommandToServer(commandText);
 
             if (response.statusCode() == 200) {

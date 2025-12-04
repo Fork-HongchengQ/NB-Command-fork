@@ -32,6 +32,7 @@ public class MainViewModel {
     private final StringProperty selectedCommandName = new SimpleStringProperty();
     private final StringProperty commandDetails = new SimpleStringProperty();
     private final StringProperty history = new SimpleStringProperty();
+    private final StringProperty uid = new SimpleStringProperty();
     private final ObjectProperty<Command> selectedCommand = new SimpleObjectProperty<>();
     private final ObjectProperty<ObservableList<Command>> commands = new SimpleObjectProperty<>();
 
@@ -89,8 +90,7 @@ public class MainViewModel {
             logger.warn("Attempted to execute command but none selected");
             return;
         }
-
-        commandExecutor.executeCommand(command, this::addToHistory);
+        commandExecutor.executeCommand(uid.get(), command, this::addToHistory);
     }
 
     /**
@@ -102,8 +102,7 @@ public class MainViewModel {
             logger.warn("Attempted to execute custom command but it was empty");
             return;
         }
-
-        commandExecutor.executeCommand(customCommand, this::addToHistory);
+        commandExecutor.executeCommand(uid.get(), customCommand, this::addToHistory);
     }
 
     /**
@@ -161,6 +160,10 @@ public class MainViewModel {
 
     public StringProperty historyProperty() {
         return history;
+    }
+
+    public StringProperty uidProperty() {
+        return uid;
     }
 
     public ObjectProperty<Command> selectedCommandProperty() {

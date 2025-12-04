@@ -92,6 +92,10 @@ public class MainController implements Initializable {
     @FXML
     private TextField commandPreviewField;
     @FXML
+    private Label uidLabel;
+    @FXML
+    private TextField uidField;
+    @FXML
     private Button executeButton;
     @FXML
     private Label customLabel;
@@ -136,8 +140,12 @@ public class MainController implements Initializable {
         // Bind UI elements to ViewModel properties
         serverAddressField.textProperty().bindBidirectional(viewModel.serverAddressProperty());
         authTokenField.textProperty().bindBidirectional(viewModel.authTokenProperty());
+        // 注意这里是saved开头 不是server
         savedAddressLabel.textProperty().bind(viewModel.serverAddressProperty());
         savedAuthTokenLabel.textProperty().bind(viewModel.maskedAuthTokenProperty());
+        // uid
+        uidField.textProperty().bindBidirectional(viewModel.uidProperty());
+
 
         // 设置历史记录监听器，自动滚动到底部
         setupHistoryAutoScroll();
@@ -316,7 +324,7 @@ public class MainController implements Initializable {
 
         i18n.setLocale(locale);
         updateUIText();
-
+        
         // 重新加载命令数据
         commandsByCategory.clear();
         viewModel.loadCommandsByCategory(commandsByCategory);
@@ -374,6 +382,7 @@ public class MainController implements Initializable {
         selectedCommandLabel.setText(i18n.getString("panel.selected_command"));
         parametersLabel.setText(i18n.getString("panel.parameters"));
         previewLabel.setText(i18n.getString("panel.preview"));
+        uidLabel.setText(i18n.getString("panel.uid"));
         executeButton.setText(i18n.getString("panel.run"));
         customLabel.setText(i18n.getString("panel.custom"));
         sendCustomButton.setText(i18n.getString("panel.send_custom"));
