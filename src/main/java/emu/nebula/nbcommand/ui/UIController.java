@@ -36,7 +36,6 @@ public class UIController {
 
     public UIController(TypedDataManager typedDataManager,
                         Map<String, Control> parameterControls,
-                        Consumer<String> historyConsumer,
                         Consumer<String> commandPreviewConsumer,
                         Consumer<String> commandDetailsConsumer,
                         Consumer<String> selectedCommandConsumer,
@@ -51,8 +50,8 @@ public class UIController {
         this.commandExecutor = commandExecutor;
     }
 
-    public void showCommandDetails(Command command, String commandName, String commandDetails) {
-        this.commandDetailsConsumer.accept(commandDetails);
+    public void showCommandDetails(Command command, String commandName, String commandFullDescription) {
+        this.commandDetailsConsumer.accept(commandFullDescription);
         this.selectedCommandConsumer.accept(commandName);
 
         // 清空参数容器和参数控件映射

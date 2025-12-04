@@ -129,7 +129,6 @@ public class MainController implements Initializable {
         uiController = new UIController(
                 viewModel.getTypedDataManager(),
                 parameterControls,
-                this::updateHistory,
                 commandPreviewField::setText,
                 commandDetailArea::setText,
                 selectedCommandField::setText,
@@ -172,7 +171,7 @@ public class MainController implements Initializable {
                 (observable, oldValue, newValue) -> {
                     if (newValue != null) {
                         viewModel.setSelectedCommand(newValue);
-                        uiController.showCommandDetails(newValue, newValue.name(), newValue.description());
+                        uiController.showCommandDetails(newValue, newValue.name(), newValue.fullDescription());
                     }
                 });
 
@@ -270,15 +269,6 @@ public class MainController implements Initializable {
     @FXML
     private void handleSendCustomCommand() {
         viewModel.executeCustomCommand(customCommandArea.getText());
-    }
-
-    /**
-     * 更新历史记录显示
-     */
-    private void updateHistory(String message) {
-        // 在时间戳前添加消息
-        String timestampedMessage = java.time.LocalTime.now().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm:ss")) + " " + message;
-        viewModel.addToHistory(timestampedMessage);
     }
 
     /**

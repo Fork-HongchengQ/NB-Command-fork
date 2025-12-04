@@ -84,6 +84,11 @@ public class CommandService {
         structure.put("category.mail_system", Arrays.asList(
                 MailManager::createMailCommand
         ));
+
+        // 邮件系统类别
+        structure.put("category.build_system", Arrays.asList(
+                BuildManager::createBuildCommand
+        ));
         
         return structure;
     }
